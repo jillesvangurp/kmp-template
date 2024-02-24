@@ -5,8 +5,9 @@ This is an opinionated template for creating kotlin multi platform library proje
 - Gradle wrapper
 - [Refresh versions plugin](https://splitties.github.io/refreshVersions/) - Great way to manage dependencies.
 - [kotlin4example](https://github.com/jillesvangurp/kotlin4example) integrated to generate the readme and any other documentation you are going to write. This is all driven via the tests.
-- Some dependencies for testing (junit, kotest-assertions, etc.)
+- Some dependencies for testing (junit, kotest-assertions, etc.) and test setup for junit
 - generic publish script that tags and publishes 
+- github action that builds your stuff
 - LICENSE file (MIT)
 
 ## Gradle

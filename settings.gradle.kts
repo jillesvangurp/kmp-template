@@ -1,4 +1,4 @@
-rootProject.name = "json-dsl"
+rootProject.name = "my-new-kmp-project"
 
 pluginManagement {
     repositories {
