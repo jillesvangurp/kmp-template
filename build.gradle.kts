@@ -7,6 +7,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
     `maven-publish`
+    id("com.ncorti.ktfmt.gradle")
 }
 
 repositories {
@@ -16,6 +17,11 @@ repositories {
             includeGroup("com.github.jillesvangurp")
         }
     }
+}
+
+ktfmt {
+    // KotlinLang style - 4 space indentation - From kotlinlang.org/docs/coding-conventions.html
+    kotlinLangStyle()
 }
 
 kotlin {
