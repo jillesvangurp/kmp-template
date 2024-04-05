@@ -44,12 +44,12 @@ jobs:
         cache: 'gradle'
     - id: 'step-2'
       name: 'cache konan dir'
-      uses: 'actions/cache@v3'
+      uses: 'actions/cache@v4'
       with:
         path: '~/.konan/**/*'
         key: '.konan'
     - id: 'step-3'
       name: 'build with gradle'
-      uses: 'gradle/gradle-build-action@v2'
+      uses: 'gradle/gradle-build-action@v3'
       with:
         arguments: 'check'

@@ -1,18 +1,15 @@
 #!/usr/bin/env kotlin
 
-@file:DependsOn("io.github.typesafegithub:github-workflows-kt:1.8.0")
+@file:DependsOn("io.github.typesafegithub:github-workflows-kt:1.13.0")
 
-import io.github.typesafegithub.workflows.actions.actions.*
-import io.github.typesafegithub.workflows.actions.docker.BuildPushActionV5
-import io.github.typesafegithub.workflows.actions.docker.SetupBuildxActionV3
-import io.github.typesafegithub.workflows.actions.googlegithubactions.AuthV2
-import io.github.typesafegithub.workflows.actions.googlegithubactions.SetupGcloudV1
-import io.github.typesafegithub.workflows.actions.googlegithubactions.SetupGcloudV2
-import io.github.typesafegithub.workflows.actions.gradle.GradleBuildActionV2
+import io.github.typesafegithub.workflows.actions.actions.CacheV4
+import io.github.typesafegithub.workflows.actions.actions.CheckoutV4
+import io.github.typesafegithub.workflows.actions.actions.SetupJavaV4
+import io.github.typesafegithub.workflows.actions.gradle.GradleBuildActionV3
+import io.github.typesafegithub.workflows.annotations.ExperimentalKotlinLogicStep
 import io.github.typesafegithub.workflows.domain.RunnerType
 import io.github.typesafegithub.workflows.domain.triggers.PullRequest
 import io.github.typesafegithub.workflows.domain.triggers.Push
-import io.github.typesafegithub.workflows.dsl.expressions.expr
 import io.github.typesafegithub.workflows.dsl.workflow
 import io.github.typesafegithub.workflows.yaml.writeToFile
 
@@ -20,10 +17,10 @@ val workflow = workflow(
     name = "Process Pull Request",
     on = listOf(
         Push(
-            branches = listOf("main")
+            branches = listOf("main"),
         ),
         PullRequest(
-            branches = listOf("main")
+            branches = listOf("main"),
         ),
     ),
     sourceFile = __FILE__.toPath(),
@@ -37,7 +34,7 @@ val workflow = workflow(
     ) {
         uses(
             name = "checkout",
-            action = CheckoutV4()
+            action = CheckoutV4(),
         )
         uses(
             name = "setup jdk",
@@ -46,24 +43,21 @@ val workflow = workflow(
                 javaVersion = "21",
                 distribution = SetupJavaV4.Distribution.Corretto,
                 cache = SetupJavaV4.BuildPlatform.Gradle,
-            )
+            ),
         )
         uses(
             name = "cache konan dir",
-            action = CacheV3(
+            action = CacheV4(
                 path = listOf("~/.konan/**/*"),
-                key = ".konan"
-            )
+                key = ".konan",
+            ),
         )
-        run {
-            val gradleBuildStep = uses(
-                name = "build with gradle",
-                action = GradleBuildActionV2(
-                    arguments = "check",
-                )
-            )
-        }
-
+        uses(
+            name = "build with gradle",
+            action = GradleBuildActionV3(
+                arguments = "check",
+            ),
+        )
     }
 }
 
