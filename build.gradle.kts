@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
@@ -7,7 +9,6 @@ plugins {
     kotlin("multiplatform")
     kotlin("plugin.serialization")
     `maven-publish`
-    id("com.ncorti.ktfmt.gradle")
 }
 
 repositories {
@@ -19,14 +20,12 @@ repositories {
     }
 }
 
-ktfmt {
-    // KotlinLang style - 4 space indentation - From kotlinlang.org/docs/coding-conventions.html
-    kotlinLangStyle()
-}
-
 kotlin {
     jvm {
         // should work for android as well
+        compilerOptions {
+            jvmTarget = JvmTarget.JVM_11
+        }
     }
     js(IR) {
         nodejs {
@@ -44,10 +43,16 @@ kotlin {
     macosX64()
     macosArm64()
     iosArm64()
+    iosSimulatorArm64()
     iosX64()
+    iosSimulatorArm64()
+    wasmJs {
+        browser()
+        nodejs()
+        d8()
+    }
     // blocked on kotest assertions wasm release
-//    @OptIn(ExperimentalWasmDsl::class)
-//    wasmJs()
+//    wasmWasi()
 
     sourceSets {
 
@@ -72,12 +77,9 @@ kotlin {
         }
         jvmTest {
             dependencies {
-                implementation(kotlin("test-junit5", "_"))
-                implementation(Testing.junit.jupiter.api)
-                implementation(Testing.junit.jupiter.engine)
-
                 implementation("com.github.jillesvangurp:kotlin4example:_")
-                implementation("ch.qos.logback:logback-classic:_")
+                runtimeOnly("org.junit.jupiter:junit-jupiter:_")
+                implementation(kotlin("test-junit"))
             }
         }
 
@@ -93,21 +95,28 @@ kotlin {
             }
         }
 
+        wasmJsTest {
+            dependencies {
+                implementation(kotlin("test-wasm-js"))
+            }
+        }
+
         all {
+            languageSettings {
+                languageVersion = "1.9"
+                apiVersion = "1.9"
+            }
             languageSettings.optIn("kotlin.RequiresOptIn")
         }
     }
 }
 
-tasks.withType<KotlinJvmCompile> {
-    jvmTargetValidationMode.set(JvmTargetValidationMode.WARNING)
-
-    kotlinOptions {
-        // this is the minimum LTS version we support, 8 is no longer supported
-        jvmTarget = "11"
-        languageVersion = "1.9"
-    }
+tasks.named("iosSimulatorArm64Test") {
+    // requires IOS simulator and tens of GB of other stuff to be installed
+    // so keep it disabled
+    enabled = false
 }
+
 
 publishing {
     repositories {
