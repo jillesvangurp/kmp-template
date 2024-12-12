@@ -78,8 +78,9 @@ kotlin {
         jvmTest {
             dependencies {
                 implementation("com.github.jillesvangurp:kotlin4example:_")
-                runtimeOnly("org.junit.jupiter:junit-jupiter:_")
                 implementation(kotlin("test-junit"))
+                implementation("org.junit.jupiter:junit-jupiter:_")
+                runtimeOnly("org.junit.platform:junit-platform-launcher")
             }
         }
 

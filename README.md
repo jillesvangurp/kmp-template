@@ -23,7 +23,10 @@ My goal with this is to waste less time setting up new projects. Kotlin multipla
 - [ ] Fix your project name by changing `rootProject.name = "my-new-kmp-project"` in settings.gradle.kts. Override the group name in gradle.properties
 - [ ] Review default maven repo for releases and other things in build.gradle.kts
 - [ ] Update copyright file
-- [ ] Start writingb your own README.md by modifying the code that generates it
+- [ ] Run `gradle refreshVersions` and update versions.properties
+- [ ] Add your own dependencies
+- [ ] Add some code
+- [ ] Start writing your own README.md by modifying the code that generates it
 
 ## Gradle
 
