@@ -7,7 +7,6 @@ This works for me and might help you bootstrap your kotlin projects.
 My goal with this is to waste less time setting up new projects. Kotlin multiplatform can be a bit fiddly/challenging to get going with and there are a lot of things that I want to add to projects. This gets me there with minimal fiddling.
 
 - Gradle wrapper with recent version of gradle & kts dialect
-- [ktfmt](https://github.com/facebook/ktfmt) - Code style is enforced with ktfmt. A matching .editorconfig is included. The style is Kotlin's [official style](kotlinlang.org/docs/coding-conventions.html). Tip, configure your IDE to format on save.
 - [Refresh versions plugin](https://splitties.github.io/refreshVersions/) - Great way to manage dependencies and stay on top of updates.
 - [kotlin4example](https://github.com/jillesvangurp/kotlin4example) integrated to generate the readme and any other documentation you are going to write. This is all driven via the tests.
 - Some dependencies for testing (junit, kotest-assertions, etc.) and test setup for junit
