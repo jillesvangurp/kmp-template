@@ -1,12 +1,12 @@
 # JsonDsl
 
-This is an opinionated template for creating kotlin multi platform library projects.
+This is an **opinionated** template for creating kotlin multi platform library projects.
 
 This works for me and might help you bootstrap your kotlin projects.
 
 ## Batteries included
 
-My goal with this is to waste less time setting up new projects. Kotlin multiplatform can be a bit fiddly to get going with and there are a lot of things that I want to add to projects. This gets me there with minimal fiddling.
+My goal with this is to waste less time setting up new projects. Kotlin multiplatform can be a bit fiddly/challenging to get going with and there are a lot of things that I want to add to projects. This gets me there with minimal fiddling.
 
 - Gradle wrapper with recent version of gradle & kts dialect
 - [ktfmt](https://github.com/facebook/ktfmt) - Code style is enforced with ktfmt. A matching .editorconfig is included. The style is Kotlin's [official style](kotlinlang.org/docs/coding-conventions.html). Tip, configure your IDE to format on save.
@@ -17,16 +17,18 @@ My goal with this is to waste less time setting up new projects. Kotlin multipla
 - Github action that builds your stuff generated using [github-workflows-kt](https://github.com/typesafegithub/github-workflows-kt). Setup to cache gradle and konan related files to speed up your builds.
 - LICENSE file (MIT)
 
-## Usage & project create checklist
+## Usage & project create/update checklist
 
 - [ ] Go to Github and push the "Use this template" button. This will create a new project based on this template
-- [ ] Fix your project name by changing `rootProject.name = "my-new-kmp-project"` in settings.gradle.kts. Override the group name in gradle.properties
+- [ ] Change your project name by changing `rootProject.name = "my-new-kmp-project"` in settings.gradle.kts. 
+- [ ] Override the group name in gradle.properties
 - [ ] Review default maven repo for releases and other things in build.gradle.kts
-- [ ] Update copyright file
-- [ ] Run `gradle refreshVersions` and update versions.properties
+- [ ] Update & review the [License](License); change the copyright year and owner.
+- [ ] Run `./gradlew refreshVersions` and update versions.properties
 - [ ] Add your own dependencies
-- [ ] Add some code
-- [ ] Start writing your own README.md by modifying the code that generates it
+- [ ] If needed, run `./gradlew kotlinUpgradeYarnLock`
+- [ ] If a newer version of gradle is available, run `./gradlew wrapper --gradle-version 8.11.1` (substitute latest version)
+- [ ] Start coding and write your own README.md and other documentation by modifying the `ReadmeGenerationTest`
 
 ## Gradle
 
@@ -70,5 +72,5 @@ Hello World!
 
 ## Multi platform
 
-This is a Kotlin multi platform library that should work on most  kotlin platforms (jvm, js, ios, android, etc). Wasm will be added later, after Kotlin 2.0 stabilizes.
+This is a Kotlin multi platform library that should work on all kotlin platforms (jvm, js, ios, android, etc).
 

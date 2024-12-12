@@ -1,6 +1,5 @@
 package com.jillesvangurp.jsondsl.readme
 
-import com.jillesvangurp.jsondsl.*
 import com.jillesvangurp.kotlin4example.SourceRepository
 import java.io.File
 import kotlin.test.Test

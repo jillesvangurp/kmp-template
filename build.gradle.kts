@@ -1,9 +1,9 @@
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+@file:OptIn(ExperimentalWasmDsl::class)
+
 import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
-import org.jetbrains.kotlin.gradle.dsl.jvm.JvmTargetValidationMode
-import org.jetbrains.kotlin.gradle.tasks.KotlinJvmCompile
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     kotlin("multiplatform")
@@ -64,6 +64,7 @@ kotlin {
 
         commonTest {
             dependencies {
+                implementation(kotlin("test"))
                 implementation(kotlin("test-common"))
                 implementation(kotlin("test-annotations-common"))
                 implementation("io.kotest:kotest-assertions-core:_")
@@ -78,7 +79,6 @@ kotlin {
         jvmTest {
             dependencies {
                 implementation("com.github.jillesvangurp:kotlin4example:_")
-                implementation(kotlin("test-junit"))
                 implementation("org.junit.jupiter:junit-jupiter:_")
                 runtimeOnly("org.junit.platform:junit-platform-launcher")
             }
