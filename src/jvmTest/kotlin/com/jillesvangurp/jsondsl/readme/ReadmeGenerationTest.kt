@@ -4,6 +4,7 @@ import com.jillesvangurp.kotlin4example.SourceRepository
 import java.io.File
 import kotlin.test.Test
 
+// FIXME adjust
 const val githubLink = "https://github.com/formation-res/pg-docstore"
 
 val sourceGitRepository =
@@ -19,9 +20,9 @@ class ReadmeGenerationTest {
         File(".", "README.md")
             .writeText(
                 """
-            # JsonDsl
-
-        """.trimIndent().trimMargin() +
+                    # MyNewKmpProject
+        
+                """.trimIndent().trimMargin() +
                     "\n\n" +
                     readmeMd.value
             )
@@ -34,15 +35,17 @@ val readmeMd =
 
         section("Example") {
             +"""
-            The main feature of [kotlin4example](https://github.com/jillesvangurp/kotlin4example) is of course integrating code samples into your documentation.   
-        """
+                This README uses [kotlin4example](https://github.com/jillesvangurp/kotlin4example) so you are all set up to show of your library with working examples.   
+            """
                 .trimIndent()
             subSection("Hello World") {
-                example { println("Hello World!") }
-                    .let {
+                example {
+                    // prints hello world
+                    println("Hello World!")
+                }.let {
                         +"""
-                   And you can actually grab the output and show it in another code block:
-                """
+                           You can actually grab the output and show it in another code block:
+                        """
                             .trimIndent()
 
                         mdCodeBlock(it.stdOut, type = "text")

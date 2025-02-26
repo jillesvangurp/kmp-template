@@ -1,4 +1,4 @@
-# JsonDsl
+# MyNewKmpProject
 
 This is an **opinionated** template for creating kotlin multi platform library projects.
 
@@ -15,6 +15,7 @@ My goal with this is to waste less time setting up new projects. Kotlin multipla
 - generic publish script that tags and publishes
 - Github action that builds your stuff generated using [github-workflows-kt](https://github.com/typesafegithub/github-workflows-kt). Setup to cache gradle and konan related files to speed up your builds.
 - LICENSE file (MIT)
+- Easy to publish to the FORMATION maven repo, substitute your own publishing logic as needed
 
 ## Usage & project create/update checklist
 
@@ -22,11 +23,12 @@ My goal with this is to waste less time setting up new projects. Kotlin multipla
 - [ ] Change your project name by changing `rootProject.name = "my-new-kmp-project"` in settings.gradle.kts. 
 - [ ] Override the group name in gradle.properties
 - [ ] Review default maven repo for releases and other things in build.gradle.kts
-- [ ] Update & review the [License](License); change the copyright year and owner.
+- [ ] Update & review the [License](License); change the copyright starting year and owner.
 - [ ] Run `./gradlew refreshVersions` and update versions.properties
 - [ ] Add your own dependencies
 - [ ] If needed, run `./gradlew kotlinUpgradeYarnLock`
-- [ ] If a newer version of gradle is available, run `./gradlew wrapper --gradle-version 8.11.1` (substitute latest version)
+- [ ] If a newer version of gradle is available, run `./gradlew wrapper --gradle-version 8.13` (substitute latest version)
+- [ ] Address the FIXMEs in `build.gradle.kts` and `ReadmeGenerationTest`
 - [ ] Start coding and write your own README.md and other documentation by modifying the `ReadmeGenerationTest`
 
 ## Gradle
@@ -55,15 +57,16 @@ And then you can add the dependency:
 
 ## Example
 
-The main feature of [kotlin4example](https://github.com/jillesvangurp/kotlin4example) is of course integrating code samples into your documentation.   
+This README uses [kotlin4example](https://github.com/jillesvangurp/kotlin4example) so you are all set up to show of your library with working examples.   
 
 ### Hello World
 
 ```kotlin
-println("Hello World!") 
+// prints hello world
+println("Hello World!")
 ```
 
-And you can actually grab the output and show it in another code block:
+You can actually grab the output and show it in another code block:
 
 ```text
 Hello World!
@@ -71,5 +74,5 @@ Hello World!
 
 ## Multi platform
 
-This is a Kotlin multi platform library that should work on all kotlin platforms (jvm, js, ios, android, etc).
+This is a Kotlin multi platform library that should work on all kotlin platforms (jvm, js, wasm, native, ios, android, etc).
 
