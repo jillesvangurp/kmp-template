@@ -1,4 +1,4 @@
-package com.jillesvangurp.jsondsl.readme
+package com.jillesvangurp.docs.readme
 
 import com.jillesvangurp.kotlin4example.SourceRepository
 import java.io.File
