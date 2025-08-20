@@ -12,7 +12,7 @@ plugins {
     `maven-publish`
 }
 
-// FIXME adjust as needed
+// FIXME: update these to match your GitHub user and repository name
 val ghUser = "jillesvangurp"
 val ghProjectName = "kmp-template"
 
@@ -23,8 +23,7 @@ repositories {
             includeGroup("com.github.jillesvangurp")
         }
     }
-    // FIXME adjust as needed
-    // remove this if you don't use any of our multiplatform libraries
+    // FIXME: remove if you don't use our multiplatform libraries or replace with your own repository
     maven("https://maven.tryformation.com/releases")
 }
 
@@ -140,6 +139,7 @@ publishing {
                 url.set("https://github.com/$ghUser/$ghProjectName")
 
                 licenses {
+                    // FIXME: update license information if you use a different license
                     license {
                         name.set("MIT License")
                         url.set("https://github.com/$ghUser/$ghProjectName/blob/master/LICENSE")
@@ -147,6 +147,7 @@ publishing {
                 }
 
                 developers {
+                    // FIXME: replace with your own developer details
                     developer {
                         id.set("jillesvangurp")
                         name.set("Jilles van Gurp")

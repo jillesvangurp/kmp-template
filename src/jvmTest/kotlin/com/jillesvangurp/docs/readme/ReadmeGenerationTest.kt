@@ -4,8 +4,8 @@ import com.jillesvangurp.kotlin4example.SourceRepository
 import java.io.File
 import kotlin.test.Test
 
-// FIXME adjust
-const val githubLink = "https://github.com/formation-res/pg-docstore"
+// FIXME: replace with the URL of your repository
+const val githubLink = "https://github.com/your-user/my-new-kmp-project"
 
 val sourceGitRepository =
     SourceRepository(
