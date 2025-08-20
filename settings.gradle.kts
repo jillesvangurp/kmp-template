@@ -1,3 +1,4 @@
+// TODO: change this to your project name
 rootProject.name = "my-new-kmp-project"
 
 pluginManagement {
